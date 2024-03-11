@@ -4,7 +4,7 @@ Creada para actualizar el proyecto a una versión más actualizada y editable
 
 ## 🚀 Estructura del proyecto
 
-Inside of your Astro project, you'll see the following folders and files:
+Esta es la estructura dentro del proyecto ASTRO
 
 ```text
 /

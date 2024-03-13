@@ -1,6 +1,11 @@
 ---
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/700.css';
+import '@fontsource/poppins/900.css';
+import '@fontsource-variable/caveat';
+
 interface Props {
 	title: string;
 	description: string;
@@ -37,9 +42,8 @@ const { title, description } = Astro.props;
 		);
 	}
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
+		font-family: "Poppins", system-ui, sans-serif;
+		background: #fff;		
 	}
 	code {
 		font-family:
@@ -51,5 +55,31 @@ const { title, description } = Astro.props;
 			Bitstream Vera Sans Mono,
 			Courier New,
 			monospace;
+	}
+	p {
+		color: rgba(78, 78, 78, 0.8);
+		line-height: 1.4;
+		margin-bottom: 1em;
+		font-weight: 100;
+		font-size: 1em;		
+	}
+
+	p strong {
+		color: black;
+		font-weight: 700;
+	}
+
+	h1 {
+		font-weight: 900;
+		color: white;
+	}
+
+	h2 {
+		font-weight: 700;
+		color: white;
+	}
+
+	.handwritten {
+    font-family: 'Caveat Variable', cursive, "Poppins", sans-serif;
 	}
 </style>

@@ -1,0 +1,111 @@
+---
+const { currentPage } = Astro.props;
+
+const navItems = [
+  { href: "/", text: "Inicio" },
+  { href: "/nosotros", text: "Nosotros" },
+  { href: "/contacto", text: "Contacto" }
+];
+---
+
+<nav id="main-nav" class="fixed w-full z-20 top-0 start-0 transition-all duration-300" >
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4 px-10">
+    <!-- Contenedor izquierdo para logo y navegación -->
+    <div class="flex items-center md:flex-1">
+      <a href="/" class="flex-shrink-0">
+        <img src="/logo-sc25-light.webp" class="h-14" alt="Logo Servicar25" />
+      </a>
+      
+      <!-- Navegación desktop -->
+      <div class="hidden md:block ml-8">
+        <ul class="font-medium flex flex-row space-x-8 rtl:space-x-reverse">
+          {navItems.map(item => (
+            <li class="relative group">
+              <a 
+                href={item.href} 
+                class:list={[
+                  "block md:bg-transparent md:hover:bg-transparent md:hover:text-red-600",
+                  {
+                    "text-black bg-red-600 md:text-red-600": currentPage === item.href,
+                    "text-gray hover:bg-gray-light": currentPage !== item.href
+                  }
+                ]}
+                aria-current={currentPage === item.href ? "page" : undefined}
+              >
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Número de teléfono -->
+    <div class="hidden md:block text-gray">
+      <a href="tel:+34917570220">(+34) 91 757 02 20</a>
+    </div>
+
+    <!-- Versión móvil del teléfono y botón hamburguesa -->
+    <div class="flex items-center md:hidden flex-1 justify-end">
+      <div class="text-gray text-sm mr-4">
+        <a href="tel:+34917570220">(+34) 91 757 02 20</a>
+      </div>
+      <button id="menu-toggle" 
+        data-collapse-toggle="navbar-default" 
+        type="button" 
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray rounded-lg hover:bg-gray-dark focus:outline-none focus:ring-2 focus:ring-gray-dark"
+        aria-controls="navbar-default" 
+        aria-expanded="false">
+        <span class="sr-only">Abrir menú</span>
+        <!-- icono hamburguesa -->
+        <svg class="w-5 h-5 block" id="icon-hamburger" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+
+        <!-- icono cerrar -->
+        <svg class="w-5 h-5 hidden" id="icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" xml:space="preserve">
+            <path fill="currentColor" d="M456.851 0 245 212.564 33.149 0 .708 32.337l211.961 212.667L.708 457.678 33.149 490 245 277.443 456.851 490l32.441-32.322-211.961-212.674L489.292 32.337z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú móvil -->
+    <div class="hidden w-full md:hidden" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 mt-4 border border-gray-light rounded-lg bg-gray-dark md:bg-transparent md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
+        {navItems.map(item => (
+          <li class="relative group">
+            <a 
+              href={item.href} 
+              class:list={[
+                "block py-2 px-3 rounded md:bg-transparent md:hover:bg-transparent md:hover:text-red-600 md:p-0",
+                {
+                  "text-black bg-red-600 md:text-red-600": currentPage === item.href,
+                  "text-gray hover:bg-gray-light": currentPage !== item.href
+                }
+              ]}
+              aria-current={currentPage === item.href ? "page" : undefined}
+            >
+              {item.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  const maxScroll = 200; // Ajusta este valor según tus preferencias
+  const maxOpacity = 0.7; // Opacidad máxima del 70%
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const opacity = Math.min(scrollY / maxScroll, 1) * maxOpacity
+    
+    if (nav) {
+      nav.style.backgroundColor = `rgba(31, 41, 55, ${opacity})` // Ajusta estos valores RGB según tu color bg-gray-dark
+      nav.style.backdropFilter = `blur(${opacity * 8}px)` // Ajusta el valor máximo de blur según tus preferencias
+    }
+  });
+</script>

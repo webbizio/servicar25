@@ -1,0 +1,24 @@
+---
+interface Props {
+    titulo: string;
+    imagen: string;
+}
+
+const { titulo = "Aeropuerto", imagen = "/business2.jpg" } = Astro.props;
+---
+
+<div class="w-full flex flex-row justify-center">
+    <div class="bg-white rounded-lg shadow-md max-w-sm">
+        <div class="overflow-hidden rounded-t-lg">
+            <img 
+                src="/business2.jpg" 
+                alt="Descripción de la imagen" 
+                class="w-full h-48 object-cover"
+            >
+        </div>
+        <div class="p-6">
+            <h3 class="text-xl mb-2">{titulo}</h3>
+            <div class="w-24 h-1 bg-red-600 rounded"></div>
+        </div>
+    </div>
+</div>

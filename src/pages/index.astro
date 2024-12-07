@@ -1,14 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Hero from '../components/Hero.astro'
-import Events from '../components/Events.astro'
-import Fleet from '../components/Fleet.astro'
-import Purchase from '../components/Purchase.astro'
+import Layout from '@/layouts/Layout.astro'
+import Hero from '@/components/index/Hero.astro'
+import Events from '@/components/index/events/Events.astro'
+import Fleet from '@/components/index/Fleet.astro'
+import Purchase from '@/components/index/Purchase.astro'
 ---
 
 <Layout 
 	title="Servicar25 - Más de 30 años llevándote a tu destino"
 	description="En SERVICAR25 nos adaptamos a sus necesidades y le damos la posibilidad de elegir entre vehículos desde cinco hasta nueve plazas"
+	currentPage="/"
 	>
 	<main>
 		<Hero />

@@ -1,0 +1,16 @@
+---
+interface Props {
+    titulo: string;
+    icono: string;
+    categoryId: number;
+}
+
+const { titulo = "Aeropuerto", icono = "fas fa-plane", categoryId = 1 } = Astro.props;
+---
+
+<div data-category-id={categoryId} class="flex flex-col items-center transform transition-transform duration-300 hover:-translate-y-2 cursor-pointer group">
+    <div class="bg-gradient-to-b from-red-800 to-red-600 w-20 h-20 rounded-full mb-3 flex items-center justify-center">
+        <i class={`${icono} text-white text-4xl`}></i>
+    </div>
+    <span class="text-black group-hover:text-red-600">{titulo}</span>
+</div>

@@ -42,7 +42,7 @@ const navItems = [
 
     <!-- Número de teléfono -->
     <div class="hidden md:block text-gray">
-      <a href="tel:+34917570220">(+34) 91 757 02 20</a>
+      <a href="tel:+34917570220"><i class="fa-solid fa-phone"></i> (+34) 91 757 02 20</a>
     </div>
 
     <!-- Versión móvil del teléfono y botón hamburguesa -->
@@ -96,16 +96,16 @@ const navItems = [
 
 <script>
   const nav = document.getElementById('main-nav');
-  const maxScroll = 200; // Ajusta este valor según tus preferencias
-  const maxOpacity = 0.7; // Opacidad máxima del 70%
+  const maxScroll = 200; 
+  const maxOpacity = 0.9; // Opacidad máxima del 90%
 
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     const opacity = Math.min(scrollY / maxScroll, 1) * maxOpacity
     
     if (nav) {
-      nav.style.backgroundColor = `rgba(31, 41, 55, ${opacity})` // Ajusta estos valores RGB según tu color bg-gray-dark
-      nav.style.backdropFilter = `blur(${opacity * 8}px)` // Ajusta el valor máximo de blur según tus preferencias
+      nav.style.backgroundColor = `rgba(31, 41, 55, ${opacity})`
+      nav.style.backdropFilter = `blur(${opacity * 8}px)`
     }
   });
 </script>

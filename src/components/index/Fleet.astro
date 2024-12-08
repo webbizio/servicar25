@@ -1,0 +1,92 @@
+---
+
+interface Manufacturer {
+    id: number;
+    name: string;
+}
+
+interface Model {
+    id: number;
+    name: string;
+    manufacturer: Manufacturer;
+}
+
+interface Category {
+    id: number;
+    name: string;
+}
+
+interface Vehicle {
+    id: number;
+    modelId: number;
+    categoryId: number;
+    imagePath: string;
+    maxPassengers: number;
+    maxLuggage: number;
+    suitableWedding: boolean;
+    suitableBusiness: boolean;
+    suitableAirport: boolean;
+    suitableEvents: boolean;
+    suitableShoppingTour: boolean;
+    suitableSightseeingTour: boolean;
+    enabled: boolean;
+    model: Model;
+    category: Category;
+}
+
+const response = await fetch('http://localhost:3000/unauth/vehicles/');
+const vehicles = await response.json() as Vehicle[];
+const apiUrlUploads = 'http://localhost:3000/uploads/';
+---
+
+<section class="max-w-screen-xl mx-auto my-28 px-10">
+    <h2 class="text-4xl text-black font-normal text-center text-wrap mx-auto mb-10 tracking-wide">
+        FLOTA
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {vehicles.map((vehicle) => (
+            <div class="w-full flex flex-row justify-center">
+                <div class="bg-white rounded-lg shadow-md max-w-sm">
+                    <div class="overflow-hidden rounded-t-lg">
+                        <img 
+                            src={vehicle.imagePath 
+                                ? apiUrlUploads + vehicle.imagePath 
+                                : apiUrlUploads + 'vehicles/vehicle-silhouette.png'} 
+                            alt={`${vehicle.model.manufacturer.name} ${vehicle.model.name}`}
+                            class="w-full h-48 object-cover"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl mb-2">{vehicle.model.manufacturer.name} {vehicle.model.name}</h3>
+                        <div class="w-24 h-1 bg-red-600 rounded mb-4"></div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-600">{vehicle.category.name}</span>
+                            <div class="flex flex-wrap gap-4 text-red-600">
+                                {vehicle.suitableAirport && (
+                                    <i class="fas fa-plane" title="Aeropuerto"></i>
+                                )}
+                                {vehicle.suitableSightseeingTour && (
+                                    <i class="fas fa-suitcase" title="Visita turística"></i>
+                                )}
+                                {vehicle.suitableShoppingTour && (
+                                    <i class="fas fa-shopping-bag" title="Shopping tour"></i>
+                                )}
+                                {vehicle.suitableBusiness && (
+                                    <i class="fas fa-briefcase" title="Business"></i>
+                                )}
+                                {vehicle.suitableWedding && (
+                                    <i class="fas fa-ring" title="Bodas"></i>
+                                )}
+                                {vehicle.suitableEvents && (
+                                    <i class="fas fa-users" title="Eventos y congresos"></i>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</section>

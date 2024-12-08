@@ -25,7 +25,7 @@ const categories: Category[] = [
 
 const EventsSection = () => {
     const [events, setEvents] = useState<Event[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<number | null>(8);
 
     const apiUrlUploads = 'http://localhost:3000/uploads/'
 
@@ -45,6 +45,10 @@ const EventsSection = () => {
             fetchEventsByCategory(categoryId)
         }
     };
+
+    useEffect(() => {
+        fetchEventsByCategory(selectedCategory || 8)
+    }, [])
 
     return (
 
@@ -93,7 +97,9 @@ const EventsSection = () => {
                         </div>
                     ))
                 ) : (
-                    <div>No hay eventos para mostrar</div>
+                    <div className="col-span-1 sm:col-span-2 lg:col-span-3 text-center p-6 bg-black rounded shadow-xl">
+                        <p className="text-white">No existen eventos para la categoría seleccionada.</p>
+                    </div>
                 )}
             </div>
         </section>

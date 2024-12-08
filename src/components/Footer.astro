@@ -1,0 +1,68 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<footer class="bg-[#1C1C1C] text-white py-12">
+  <div class="max-w-screen-xl container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+      <!-- Columna izquierda -->
+      <div class="space-y-4 text-center md:text-left">
+        <div class="flex items-center gap-2 justify-center md:justify-start">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:info@servicar25.com">info@servicar25.com</a>
+        </div>
+        <div class="flex items-center gap-2 justify-center md:justify-start">
+          <i class="fa-solid fa-phone"></i>
+          <a href="tel:+34917570200">(+34) 917 570 200</a>
+        </div>
+        <div class="flex items-center gap-2 justify-center md:justify-start">
+          <i class="fa-solid fa-credit-card"></i>
+          <span>Pago directo</span>
+        </div>
+      </div>
+
+      <!-- Logo central -->
+      <div class="flex justify-center">
+        <img 
+          src="/logo-servicar25-light.png" 
+          alt="Servicar25 Logo" 
+          class="h-8"
+        />
+      </div>
+
+      <!-- Enlaces derecha -->
+      <div class="text-center md:text-right space-y-2">
+        <a href="/legal/data-protection-policy">Política de protección de datos</a><br>
+        <a href="/legal/cookies-policy">Política de cookies</a><br>
+        <a href="/legal/your-secure-data">Sus datos seguros</a><br>
+        <a href="/legal/informant-channel">Canal del informante</a><br>
+        <a 
+          href="/docs/protocolo_acoso_lgtbi.pdf" 
+          target="_blank"
+          rel="noopener noreferrer">
+          Política LGTBI
+        </a><br>
+        <a 
+          href="/docs/20230911_SERVICAR_POLITICA GESTION INTEGRADA.pdf" 
+          target="_blank"
+          rel="noopener noreferrer">Política de calidad y medio ambiente</a>
+      </div>
+    </div>
+
+    <!-- Footer bottom -->
+    <div class="flex flex-col md:flex-row justify-between items-center mt-8 pt-8 border-t border-gray-700 gap-4 md:gap-0">
+      <div>© Copyright {new Date().getFullYear()}</div>
+      <div class="flex gap-4">
+        <a href="https://www.facebook.com/servicar25" class="hover:text-blue-400">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/servicar25" class="hover:text-pink-400">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/servicar25" class="hover:text-blue-500">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

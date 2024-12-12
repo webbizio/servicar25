@@ -29,11 +29,16 @@ const { bookingData, error } = Astro.props;
 		{!error && bookingData && (
 			<div>
 				<div class="mb-5">
-					<h5 class="text-xl font-normal mb-4 text-black">
-						Detalles del servicio <Badge pagado={bookingData.isAlreadyPaid} />
-					</h5>
+					<div class="flex flex-col md:flex-row md:items-start mt-2">
+						<h5 class="text-xl font-normal mb-4 md:mb-0 text-black">
+							Detalles del servicio						
+						</h5>
+						<div class="md:ml-4 md:mt-1">
+							<Badge pagado={bookingData.isAlreadyPaid} />
+						</div>
+					</div>
 
-					<div class="w-full h-px bg-red-600 mb-4"></div>
+					<div class="w-full h-px bg-red-600 mb-4 mt-4"></div>
 
 					<p><span class="font-bold">Referencia:</span> {bookingData.reference}</p>
 					<p>

@@ -13,7 +13,13 @@
         </div>
         <div class="flex items-center gap-2 justify-center md:justify-start">
           <i class="fa-solid fa-credit-card"></i>
-          <span>Pago directo</span>
+          <button 
+            class="hover:text-gray-300 transition-colors relative group"
+            onclick="document.getElementById('pagoDirectoModal').classList.remove('hidden')"
+          >
+            Pago directo
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+          </button>
         </div>
       </div>
 
@@ -58,6 +64,40 @@
         <a href="https://www.linkedin.com/company/servicar25" class="hover:text-blue-500">
           <i class="fa-brands fa-linkedin"></i>
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Pago Directo -->
+  <div id="pagoDirectoModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white text-black p-6 rounded-lg w-full max-w-md">
+      <h2 class="text-xl font-bold mb-4 text-black">Pago directo</h2>
+      
+      <div class="mb-4">
+        <label for="localizador" class="block mb-2">Localizador *</label>
+        <input 
+          type="text" 
+          id="localizador" 
+          class="w-full p-2 border border-gray-300 rounded"
+          onkeyup="document.getElementById('continuarBtn').disabled = !this.value"
+        />
+      </div>
+
+      <div class="flex justify-end gap-4">
+        <button 
+          onclick="document.getElementById('pagoDirectoModal').classList.add('hidden')"
+          class="px-4 py-2 border border-red-600 text-red-600 rounded hover:bg-red-50 transition-colors"
+        >
+          Cerrar
+        </button>
+        <button 
+          id="continuarBtn"
+          disabled
+          onclick="window.location.href = `/pago/pago-directo-detalle/${document.getElementById('localizador').value}`"
+          class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Continuar
+        </button>
       </div>
     </div>
   </div>

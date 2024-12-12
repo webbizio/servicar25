@@ -1,0 +1,23 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout 
+    title="404: Página no encontrada" 
+    description="Lo sentimos, la página que buscas no existe o ha sido movida."
+    currentPage="/404"
+>
+    <main class="min-h-screen flex items-center justify-center px-6 bg-black">
+        <div class="text-center">
+            <h1 class="text-6xl font-bold text-red-600 mb-4">404</h1>
+            <h2 class="text-2xl font-semibold mb-4">¡Página no encontrada!</h2>
+            <p class="text-gray mb-8">Lo sentimos, la página que buscas no existe o ha sido movida.</p>
+            <a 
+                href="/" 
+                class="inline-block bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700 transition-colors"
+            >
+                Volver al inicio
+            </a>
+        </div>
+    </main>
+</Layout>

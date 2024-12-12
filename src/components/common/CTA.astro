@@ -1,0 +1,20 @@
+---
+interface Props {
+    texto: string;
+    url?: string;
+    icon?: string;
+}
+
+const { texto, url = "#", icon } = Astro.props;
+---
+
+
+<div class="mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+    <button class="bg-red-600 transition-colors duration-300 ease-in-out hover:bg-red-800 text-white py-2 px-4 rounded-3xl mx-auto">
+        <a href={url}>
+            {icon && <i class={`${icon} mr-2`}></i>}
+            {texto}
+        </a>
+    </button>	
+</div>		
+	

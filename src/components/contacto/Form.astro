@@ -1,0 +1,208 @@
+<div class="container mx-auto px-4 -mt-48 mb-20 relative z-10">
+    <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-20">
+        <!-- Formulario -->
+        <div>
+            <form id="contactForm" class="space-y-6 rounded-lg shadow-xl bg-white p-8">
+                <div>
+                    <label for="nombre" class="block text-gray-700 text-sm font-medium mb-2">Nombre y apellidos*</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        required
+                        class="w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                    >
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email*</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required
+                            class="w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                        >
+                    </div>
+                    <div>
+                        <label for="telefono" class="block text-gray-700 text-sm font-medium mb-2">Teléfono*</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            required
+                            class="w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                        >
+                    </div>
+                </div>
+
+                <div>
+                    <label for="mensaje" class="block text-gray-700 text-sm font-medium mb-2">Mensaje*</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        rows="4" 
+                        required
+                        placeholder="¿Qué necesita?, ¿cuándo y dónde le recogemos?, ¿qué vehículo desea?, ¿lleva mucho equipaje?"
+                        class="w-full px-4 py-2 border border-gray rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                    ></textarea>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <input 
+                            type="checkbox" 
+                            id="privacy" 
+                            name="privacy" 
+                            required
+                            class="mt-1 mr-2"
+                        >
+                        <label for="privacidad" class="text-sm text-gray-light">
+                            Consiento el uso de mis datos para los fines indicados en la política de privacidad 
+                            <a href="/legal/your-secure-data" class="text-red-500 hover:underline">SUS DATOS SEGUROS</a>. *
+                        </label>
+                    </div>
+
+                    <div class="flex items-start">
+                        <input 
+                            type="checkbox" 
+                            id="consent" 
+                            name="consent"
+                            class="mt-1 mr-2"
+                        >
+                        <label for="publicidad" class="text-sm text-gray-light">
+                            Consiento el uso de mis datos personales para recibir publicidad de su entidad.
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Añadir este div para mostrar errores justo antes del botón -->
+                <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <span class="block sm:inline"></span>
+                </div>
+
+                <button 
+                    type="submit"
+                    class="w-full bg-red-500 text-white py-2 px-6 rounded-md hover:bg-red-600 transition duration-300"
+                >
+                ENVIAR
+                </button>
+            </form>
+        </div>
+
+        <!-- Información de contacto -->
+        <div class="space-y-12 flex flex-col justify-center h-full">
+            <h2 class="text-4xl font-medium text-black text-gray-900">Estamos cerca de ti</h2>
+            
+            <div class="space-y-6">
+                <div class="flex items-start space-x-4">
+                    <i class="fa-solid fa-location-dot text-red-500 mt-1"></i>
+                    <div>
+                        <p class="text-gray-700">C/ Gamonal, 30.</p>
+                        <p class="text-gray-700">28031. Madrid</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <i class="fa-solid fa-phone text-red-500"></i>
+                    <a href="tel:+34917570200" class="text-gray-700 hover:text-red-500">(+34) 917 570 200</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <i class="fa-solid fa-envelope text-red-500"></i>
+                    <a href="mailto:info@servicar25.com" class="text-gray-700 hover:text-red-500">info@servicar25.com</a>
+                </div>
+                <div class="w-full h-px bg-gray mt-28"></div>
+            </div>
+
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/servicar25" class="text-blue-600 hover:text-blue-700">
+                    <i class="fa-brands fa-facebook-f text-2xl"></i>
+                </a>
+                <a href="https://www.instagram.com/servicar25" class="text-pink-600 hover:text-pink-700">
+                    <i class="fa-brands fa-instagram text-2xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/servicar25" class="text-blue-500 hover:text-blue-600">
+                    <i class="fa-brands fa-linkedin-in text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const form = document.getElementById('contactForm') as HTMLFormElement;
+const errorMessageDiv = document.getElementById('errorMessage') as HTMLDivElement;
+
+if (!form || !errorMessageDiv) {
+    console.error('Elementos no encontrados');
+    throw new Error('Elementos no encontrados');
+}
+
+// Función para mostrar errores
+const showError = (message: string) => {
+    errorMessageDiv.querySelector('span')!.textContent = message;
+    errorMessageDiv.classList.remove('hidden');
+};
+
+// Función para ocultar errores
+const hideError = () => {
+    errorMessageDiv.classList.add('hidden');
+};
+
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    hideError(); // Ocultar error previo al intentar enviar
+    
+    // Obtener los elementos del formulario
+    const nameInput = document.getElementById('name') as HTMLInputElement;
+    const emailInput = document.getElementById('email') as HTMLInputElement;
+    const phoneInput = document.getElementById('phone') as HTMLInputElement;
+    const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+    const privacyInput = document.getElementById('privacy') as HTMLInputElement;
+    const consentInput = document.getElementById('consent') as HTMLInputElement;
+
+    // Verificar que todos los elementos existen
+    if (!nameInput || !emailInput || !phoneInput || !messageInput || !privacyInput) {
+        console.error('Faltan elementos del formulario');
+        return;
+    }
+
+    const name = nameInput.value;
+    const email = emailInput.value;
+    const phone = phoneInput.value;
+    const message = messageInput.value;
+    const consent = consentInput.checked;
+
+    try {
+        const response = await fetch('http://localhost:3000/unauth/email/info', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                phone,
+                message,
+                privacy: privacyInput.checked,
+                consent
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            window.location.href = '/contacto/gracias';
+        } else {
+            // Mostrar el error en el div
+            const errorMessage = data.message?.error || data.message || 'Ha ocurrido un error al enviar el formulario';
+            showError(errorMessage);
+        }
+    } catch (error) {
+        showError('Ha ocurrido un error al enviar el formulario. Por favor, inténtelo de nuevo más tarde.');
+        console.error('Error:', error);
+    }
+});
+</script>

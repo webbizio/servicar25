@@ -1,0 +1,16 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import Hero from '@/components/pago/Hero.astro'
+import DetallePago from '@/components/pago/Detalle.astro'
+---
+
+<Layout 
+	title="Servicar25 - Pago directo"
+	description=""
+	currentPage="/pago/pago-directo-detalle"
+>
+	<main>
+		<Hero />
+		<DetallePago bookingData={null} error={false} />
+	</main>	
+</Layout> 

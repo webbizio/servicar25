@@ -1,0 +1,128 @@
+---
+import Badge from '@/components/pago/Badge.astro'
+import PaymentScript from '@/components/scripts/PaymentScript.astro'
+
+interface Props {
+  bookingData: any;
+  error: boolean;
+}
+
+const { bookingData, error } = Astro.props;
+---
+
+<section class="max-w-screen-xl mx-auto px-10">
+    <div class="container mx-auto">
+		{error && (
+			<div class="col-span-1 sm:col-span-2 lg:col-span-3 text-center p-6 bg-black rounded shadow-xl mb-10">
+				<p class="text-white">
+					Ha ocurrido un error obteniendo la información del pago directo. Por favor, inténtelo de nuevo más tarde.
+				</p>
+			</div>
+		)}
+
+		{!error && !bookingData && (
+			<div class="col-span-1 sm:col-span-2 lg:col-span-3 text-center p-6 bg-black rounded shadow-xl mb-10">
+				<p class="text-white">No existe información para el identificador del pago directo.</p>
+			</div>
+		)}
+
+		{!error && bookingData && (
+			<div>
+				<div class="mb-5">
+					<h5 class="text-xl font-normal mb-4 text-black">
+						Detalles del servicio <Badge pagado={bookingData.isAlreadyPaid} />
+					</h5>
+
+					<div class="w-full h-px bg-red-600 mb-4"></div>
+
+					<p><span class="font-bold">Referencia:</span> {bookingData.reference}</p>
+					<p>
+						<span class="font-bold">Nombre del pasajero:</span>
+						{bookingData.passengerName}
+					</p>
+					<p>
+						<span class="font-bold">Teléfono del pasajero:</span>
+						{bookingData.passengerPhoneNumber}
+					</p>
+                    <p>
+						<span class="font-bold">Vehículo:</span>
+						{bookingData.vehicle.model.manufacturer.name} {bookingData.vehicle.model.name}
+					</p>
+
+					<div class="grid grid-cols-1 sm:grid-cols-2 md:gap-4">
+						<div>
+							<p>
+								<span class="font-bold">Fecha de recogida:</span>
+								{ new Date(bookingData.pickupDate).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-') }
+							</p>
+						</div>
+						{bookingData.returnDate && (
+							<div>
+								<p>
+									<span class="font-bold">Fecha de retorno:</span>
+									{ new Date(bookingData.returnDate).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-') }
+								</p>
+							</div>
+						)}
+					</div>
+
+					<div class="grid grid-cols-1 sm:grid-cols-2 md:gap-4">
+						<div>
+							<p>
+								<span class="font-bold">Dirección de recogida:</span>
+								{bookingData.pickupAddress}
+							</p>
+						</div>
+						{bookingData.returnAddress && (
+							<div>
+								<p>
+									<span class="font-bold">Dirección de retorno:</span>
+									{bookingData.returnAddress}
+								</p>
+							</div>
+						)}
+					</div>
+
+					{bookingData.description && (
+						<div class="mt-0">
+							<p class="font-bold">Descripción:</p>
+							<p>{bookingData.description}</p>
+						</div>
+					)}
+				</div>
+
+				<div class="mb-5">
+					<h5 class="text-xl font-normal mb-4 text-black">Detalles de facturación</h5>
+					<div class="w-full h-px bg-red-600 mb-4"></div>
+					<p>
+						<span class="font-bold">Nombre del cliente:</span>
+						{bookingData.client.name}
+					</p>
+					<p>
+						<span class="font-bold">Dirección de facturación:</span>
+						{bookingData.client.address}
+					</p>
+					<p><span class="font-bold">NIF:</span> {bookingData.client.nif}</p>
+				</div>
+
+				<div class="row">
+					<p class="text-3xl font-normal">
+						<span class="font-bold">Precio:</span>
+						{bookingData.price}€
+					</p>
+				</div>
+                {!bookingData.isAlreadyPaid && (
+                    <button
+                      id="payButton"
+                      data-reference={bookingData.reference}
+                      class="bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700 transition-colors mb-10"
+                    >
+                      PAGAR AHORA
+                    </button>
+                )}
+			</div>
+		)}
+	</div>
+</section>
+
+<PaymentScript />

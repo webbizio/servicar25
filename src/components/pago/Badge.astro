@@ -1,0 +1,23 @@
+---
+interface Props {
+    pagado?: boolean;
+}
+
+const { pagado = false } = Astro.props;
+---
+	
+<span class:list={[
+    "py-2 px-4 rounded-3xl mx-auto text-sm text-white",
+    {
+      "bg-green-600": pagado,
+      "bg-red-600": !pagado
+    }
+  ]}>
+    <i class:list={[
+        {
+          "fa-solid fa-check": pagado,
+          "fa-solid fa-x": !pagado
+        }
+      ]}></i> {pagado ? "Pagado" : "No pagado" }
+</span>
+	

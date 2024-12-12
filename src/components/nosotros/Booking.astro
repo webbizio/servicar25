@@ -1,3 +1,7 @@
+---
+import CTA from '../common/CTA.astro';
+---
+
 <section class="max-w-screen-xl mx-auto my-28 px-10">
   <div class="container mx-auto px-4">
     <div class="text-center mb-12">
@@ -5,9 +9,7 @@
       <p class="text-lg text-gray-500">
         Te invitamos a probar nuestros servicios, somos el servicio líder en alquiler de coches con conductor.
       </p>
-      <button class="bg-red-600 transition-colors duration-300 ease-in-out hover:bg-red-800 text-white py-2 px-4 rounded-3xl mx-auto">
-        RESERVA
-    </button>
+      <CTA texto="RESERVA" url="/contacto/contacta" />
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">

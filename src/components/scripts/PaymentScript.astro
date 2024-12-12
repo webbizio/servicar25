@@ -1,0 +1,59 @@
+<script is:inline src="https://js.stripe.com/v3/"></script>
+
+<script is:inline>  
+    const handlePayment = async (reference) => {
+      try {
+        const response = await fetch(`https://a3e6-81-203-234-178.ngrok-free.app/unauth/stripe/create-payment/${reference}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'ngrok-skip-browser-warning': 'true',
+            'Accept': 'application/json'
+          },
+          mode: 'cors',
+          credentials: 'include'
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+  
+        const data = await response.json();
+        console.log('Respuesta del servidor:', data);
+        
+        if (data.success && data.data.sessionId) {
+          const stripe = Stripe('pk_test_51QUpGWCxcCOxebdU3W01SATfjUsXIZab6kNYNkhYXAEtBIzuV5aU7l1zGk2t8eMKL3iEmbdK6RYboF1MIgYKGE9u00UQhrEgbS');
+          
+          const result = await stripe.redirectToCheckout({
+            sessionId: data.data.sessionId
+          });
+  
+          if (result.error) {
+            console.error('Error en Stripe:', result.error);
+            throw new Error(result.error.message);
+          }
+        } else {
+          throw new Error('No se recibió un sessionId válido');
+        }
+      } catch (error) {
+        console.error('Error detallado:', error);
+        alert('Ha ocurrido un error al procesar el pago. Por favor, inténtelo de nuevo.');
+      }
+    };
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      const payButton = document.getElementById('payButton');
+      if (payButton) {
+        payButton.addEventListener('click', async () => {
+          const reference = payButton.dataset.reference;
+          if (reference) {
+            try {
+              await handlePayment(reference);
+            } catch (error) {
+              console.error('Error en el manejo del pago:', error);
+            }
+          }
+        });
+      }
+    });
+  </script>

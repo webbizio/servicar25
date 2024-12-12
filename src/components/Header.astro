@@ -4,7 +4,7 @@ const { currentPage } = Astro.props;
 const navItems = [
   { href: "/", text: "Inicio" },
   { href: "/nosotros", text: "Nosotros" },
-  { href: "/contacto", text: "Contacto" }
+  { href: "/contacto/contacta", text: "Contacto" }
 ];
 ---
 
@@ -24,10 +24,10 @@ const navItems = [
               <a 
                 href={item.href} 
                 class:list={[
-                  "block md:bg-transparent md:hover:bg-transparent md:hover:text-red-600",
+                  "block px-1 rounded-md transition-colors relative",
                   {
-                    "text-black bg-red-600 md:text-red-600": currentPage === item.href,
-                    "text-gray hover:bg-gray-light": currentPage !== item.href
+                    "text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-red-600": currentPage === item.href,
+                    "text-white hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-red-600": currentPage !== item.href
                   }
                 ]}
                 aria-current={currentPage === item.href ? "page" : undefined}
@@ -97,7 +97,7 @@ const navItems = [
 <script>
   const nav = document.getElementById('main-nav');
   const maxScroll = 200; 
-  const maxOpacity = 0.9; // Opacidad máxima del 90%
+  const maxOpacity = 0.5; // Opacidad máxima del 90%
 
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;

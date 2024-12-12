@@ -1,3 +1,7 @@
+---
+import CTA from '../common/CTA.astro';
+---
+
 <div class="w-full z-0 h-screen flex bg-[url('/hero-car.webp')] bg-cover relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black/50">
     <section class="relative top-4 md:top-11 md:my-32 left-0 right-0 m-auto text-center">               
         <img 
@@ -11,8 +15,6 @@
         <h2 class="text-xl text-center text-wrap mx-auto mb-3 md:mb-10 px-4 tracking-tighter">
             Más de 30 años llevándote a tu destino.
         </h2>
-        <button class="bg-red-600 transition-colors duration-300 ease-in-out hover:bg-red-800 text-white py-2 px-4 rounded-3xl mx-auto mb-10">
-            <i class="fas fa-calendar-alt mr-2"></i> RESERVA
-        </button>
+        <CTA texto="RESERVA" url="/contacto/contacta" icon="fas fa-calendar-alt" />
     </section>
 </div>

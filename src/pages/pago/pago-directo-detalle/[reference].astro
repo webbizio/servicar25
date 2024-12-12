@@ -1,0 +1,35 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import Hero from '@/components/pago/Hero.astro'
+import DetallePago from '@/components/pago/Detalle.astro'
+
+export const prerender = false
+
+const { reference } = Astro.params
+
+let bookingData = null
+let error = false
+
+try {
+  if (reference) {
+    const response = await fetch(`http://localhost:3000/unauth/bookings/reference/${reference}`);
+    if (response.ok) {
+      bookingData = await response.json();
+    } else {
+      error = true;
+    }
+  }
+} catch (e) {
+  error = true;
+}
+---
+<Layout 
+	title="Servicar25 - Pago directo"
+	description=""
+	currentPage="/pago/pago-directo-detalle"
+>
+	<main>
+		<Hero />
+		<DetallePago bookingData={bookingData} error={error} />
+	</main>	
+</Layout> 

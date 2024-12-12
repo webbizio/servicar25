@@ -1,0 +1,26 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import Hero from '@/components/pago/Hero.astro'
+import Rechazado from '@/components/pago/Rechazado.astro'
+
+export const prerender = false
+
+const { url, redirect } = Astro
+const reference = url.pathname.split('/').pop()
+
+if (!reference || reference === '[reference]') {
+  return redirect('/404')
+}
+
+---
+
+<Layout 
+	title="Servicar25 - Pago directo"
+	description=""
+	currentPage="/pago/pago-directo-rechazado"
+>
+	<main>
+		<Hero />
+		<Rechazado reference={reference} />
+	</main>	
+</Layout> 

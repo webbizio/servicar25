@@ -1,0 +1,36 @@
+---
+interface Props {
+    titulo: string;
+}
+
+const { titulo } = Astro.props;
+---
+
+<div class="w-full z-0 h-[58vh] bg-[url('/contact.jpg')] bg-cover bg-center relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black/50">
+    <section class="relative flex items-center justify-start w-full px-16">               
+        <div>
+            <h2 class="text-5xl mt-40 font-normal text-wrap mx-auto mb-6 tracking-wide">
+                Contacto
+            </h2>
+            <h3 class="text-xl text-white text-wrap tracking-tighter w-full md:w-3/4 lg:w-1/2 mb-10">
+                Envíanos tu requerimiento y uno de nuestros asesores se pondrá en contacto contigo lo antes posible.
+            </h3>
+        </div>
+    </section>
+    
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+        <svg 
+            viewBox="0 0 1440 320" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg" 
+            class="w-full h-auto"
+            preserveAspectRatio="none"
+            style="transform: scale(1.1)">
+            <path 
+                d="M0,160 
+                   C480,320 960,0 1440,160 
+                   L1440,320 L0,320 Z" 
+                fill="white"/>
+        </svg>
+    </div>
+</div>

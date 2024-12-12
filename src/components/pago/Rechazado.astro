@@ -1,0 +1,38 @@
+---
+import PaymentScript from '@/components/scripts/PaymentScript.astro';
+
+interface Props {
+  reference: string;
+}
+
+const { reference } = Astro.props;
+
+// Validación adicional
+if (!reference) {
+  throw new Error('Reference is required for Rechazado component')
+}
+---
+
+<section class="max-w-screen-xl mx-auto px-10">
+    <div class="container mx-auto">
+		
+		<div class="col-span-1 sm:col-span-2 lg:col-span-3 text-center p-6 bg-black rounded shadow-xl mb-10">
+			<p class="text-white">
+				El pago ha sido cancelado, si lo desea puede volver al proceso.
+			</p>
+		</div>
+                
+		<button
+			id="payButton"
+			data-reference={reference}
+			class="bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700 transition-colors mb-10"
+		>
+			PAGAR AHORA
+		</button>
+
+			
+
+	</div>
+</section>
+
+<PaymentScript />
